@@ -1,0 +1,141 @@
+@media screen and (max-width: 767px) {
+  .about-me {
+    padding: 65px 0 53px;
+  }
+}
+
+.about-me__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+}
+
+.about-me__photo {
+  width: 100%;
+  max-width: 292px;
+  border-radius: 10px;
+}
+
+.about-me__article-container {
+  padding: 38px 0 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.about-me__header {
+  font-size: 30px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 36px;
+  letter-spacing: -0.04em;
+  margin: 0 0 20px;
+}
+
+.about-me__subheader {
+  margin: 0;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.about-me__content {
+  margin: 20px 0;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.about-me__links {
+  margin: 18px 0;
+}
+
+.about-me__link {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 17px;
+  margin-right: 26px;
+}
+
+@media screen and (min-width: 768px) {
+  .about-me {
+    padding-top: 85px;
+  }
+
+  .about-me__info {
+    flex-direction: row-reverse;
+    margin-top: 48px;
+    align-items: stretch;
+  }
+
+  .about-me__photo {
+    max-width: 255px;
+    margin-top: 17px;
+  }
+  .about-me__article-container {
+    padding: 21px 50px 0 0;
+  }
+  .about-me__header {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 13px;
+  }
+
+  .about-me__subheader {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__content {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .about-me__links {
+    margin: 0;
+  }
+
+  .about-me__link {
+    margin-right: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about-me {
+    padding-top: 105px;
+  }
+
+  .about-me__photo {
+    max-width: 270px;
+  }
+
+  .about-me__article-container {
+    padding-top: 19px;
+    padding-right: 250px;
+  }
+
+  .about-me__header {
+    font-size: 50px;
+    line-height: 58px;
+    margin-bottom: 19px;
+  }
+
+  .about-me__subheader {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
+  .about-me__content {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 25px;
+  }
+
+  .about-me__links {
+    margin: 0;
+  }
+}

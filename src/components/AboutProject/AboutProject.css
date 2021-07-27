@@ -1,0 +1,132 @@
+.about-project__articles-container {
+  margin-top: 62px;
+  margin-bottom: 61px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about-project__article {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 58px;
+}
+
+.about-project__article:last-of-type {
+  margin-bottom: 0;
+}
+
+.about-project__article-header {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.about-project__article-content {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px;
+  margin: 16px 0 0;
+}
+
+.about-project__charts-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.about-project__chart {
+  margin: 0;
+  width: 100%;
+}
+
+.about-project__chart_backend {
+  width: 54%;
+}
+
+.about-project__progressbar {
+  height: 35px;
+  background-color: #303030;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+}
+
+.about-project__progressbar_backend {
+  background-color: #3ddc84;
+  color: #000;
+}
+
+.about-project__chart-caption {
+  text-align: center;
+  font-family: 'Suisse Intl', 'Arial', sans-serif;
+  font-size: 11px;
+  font-style: normal;
+  line-height: 13px;
+  margin: 10px 0 0;
+  color: #a0a0a0;
+}
+
+@media screen and (min-width: 768px) {
+  .about-project__articles-container {
+    margin-top: 70px;
+    margin-bottom: 36px;
+    flex-direction: row;
+  }
+
+  .about-project__article {
+    display: flex;
+  }
+
+  .about-project__article:last-of-type {
+    margin-left: 38px;
+  }
+
+  .about-project__article-header {
+    font-size: 20px;
+  }
+
+  .about-project__article-content {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 22px;
+  }
+
+  .about-project__chart_backend {
+    width: 25%;
+    min-width: 140px;
+  }
+
+  .about-project__progressbar {
+    height: 36px;
+    font-size: 14px;
+  }
+
+  .about-project__chart-caption {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .about-project__article-content {
+    font-size: 14px;
+    line-height: 20px;
+    margin-top: 26px;
+  }
+
+  .about-project__article:last-of-type {
+    margin-left: 53px;
+  }
+
+  .about-project__articles-container {
+    margin-bottom: 52px;
+  }
+}

@@ -1,0 +1,112 @@
+.card__figure {
+  margin: 0;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  padding: 14px 0;
+  background-color: #222;
+  border-radius: 6px;
+  box-shadow: 0px 4px 30px 0px rgba(34, 34, 34, 1);
+}
+
+.card__caption {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 14px 14px;
+}
+
+.card__title {
+  max-width: 200px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  margin: 0;
+}
+
+.card__duration {
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0;
+}
+
+.card__poster {
+  object-fit: cover;
+  height: 168px;
+  margin-bottom: 14px;
+}
+
+.card__button {
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  width: 100px;
+  height: 29px;
+  align-self: center;
+  border-radius: 30px;
+  outline: none;
+}
+
+.card__button:hover {
+  opacity: 0.8;
+}
+
+.button_type_save {
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 11px;
+  background-color: #313131;
+  color: #fff;
+}
+
+.button_type_saved {
+  font-size: 0;
+  background: no-repeat center url(../../images/check-mark-icon.svg) #ee3465;
+}
+
+.button_type_delete {
+  font-size: 0;
+  background: no-repeat center url(../../images/delete-icon.svg) #313131;
+}
+
+@media screen and (min-width: 768px) {
+  .card__figure {
+    width: 342px;
+    padding: 18px 0;
+  }
+
+  .card__caption {
+    padding: 0 18px 18px;
+  }
+
+  .card__title {
+    max-width: 224px;
+    font-size: 15px;
+  }
+
+  .card__duration {
+    font-size: 13px;
+  }
+
+  .card__poster {
+    height: 190px;
+    margin-bottom: 18px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .card__figure {
+    width: 360px;
+  }
+
+  .card__poster {
+    height: 200px;
+    margin-bottom: 18px;
+  }
+}

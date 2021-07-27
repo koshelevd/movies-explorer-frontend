@@ -1,0 +1,81 @@
+@import url(./vendor/normalize.css);
+@import url(./vendor/fonts.css);
+
+.page {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  background-color: #202020;
+  color: #fff;
+}
+
+.link {
+  text-decoration: none;
+  color: #fff;
+}
+
+.link:hover {
+  opacity: 0.6;
+}
+
+.smoothly {
+  transition-duration: 0.5s;
+  transition-timing-function: ease-in-out;
+}
+
+.section {
+  padding: 71px 4px;
+}
+
+.section__header {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 1.22;
+  letter-spacing: -0.04em;
+  border-bottom: #dadada solid 1px;
+  margin: 0;
+  padding-bottom: 28px;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .section {
+    padding: 92px 30px;
+  }
+
+  .section__header {
+    font-size: 22px;
+    padding-bottom: 22px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .section {
+    padding: 112px 30px 102px;
+  }
+}
+
+
+.content {
+  padding: 13px 14px;
+}
+
+@media screen and (min-width: 768px) {
+  .content {
+    padding: 20px 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .content {
+    padding: 20px 40px;
+  }
+}
