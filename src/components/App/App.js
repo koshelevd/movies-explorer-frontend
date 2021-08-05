@@ -1,10 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import {
-  Route,
-  Switch,
-  useHistory,
-  useLocation,
-} from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import Layout from '../Layout/Layout';
@@ -21,6 +16,7 @@ import moviesApi from '../../utils/MoviesApi';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 import useWindowType from '../../hooks/useWindowType';
+import { useStateWithLocalStorage } from '../../hooks/useStateWithLocalStorage';
 
 import {
   ERROR_MESSAGE_TIMEOUT,
@@ -43,7 +39,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isProfileEdit, setIsProfileEdit] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useStateWithLocalStorage('loggedIn');
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [userMovies, setUserMovies] = useState([]);
@@ -92,26 +88,23 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!loggedIn) {
-      const path = location.pathname;
-      mainApi
-        .getProfileInfo()
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          return Promise.reject(new Error(`${ERROR_TEXT}: ${response.status}`));
-        })
-        .then((result) => {
-          setLoggedIn(true);
-          setCurrentUser(result);
-          history.push(path);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }, [location, loggedIn, history]);
+    mainApi
+      .getProfileInfo()
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        return Promise.reject(new Error(`${ERROR_TEXT}: ${response.status}`));
+      })
+      .then((result) => {
+        setLoggedIn(true);
+        setCurrentUser(result);
+      })
+      .catch((err) => {
+        console.log(err);
+        setLoggedIn(false);
+      });
+  }, [loggedIn, setLoggedIn]);
 
   function handleClickMore() {
     setCardsToShow(cardsToShow + moreCards);
