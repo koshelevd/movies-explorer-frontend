@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import './NavTab.css';
 
 function NavTab({ scroller, refs }) {
-  console.log(refs);
   return (
     <nav className="nav-tab">
       <ul className="nav-tab__list">
