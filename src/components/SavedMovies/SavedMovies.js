@@ -1,18 +1,63 @@
+import { useCallback } from 'react';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
+import { useSearchEngine } from '../../hooks/useSearchEngine';
 
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
+import { SAVED_MOVIES_PAGE_TITLE } from '../../utils/config';
+
 import './SavedMovies.css';
 
-import { saved_cards } from '../../utils/constants';
+function SavedMovies({
+  userMovies,
+  cardsToShow,
+  onMore,
+  onSave,
+  isError,
+  isLoading,
+}) {
+  const movieMapper = useCallback(
+    (movie) => {
+      return {
+        movie,
+        onClick: onSave,
+      };
+    },
+    [onSave]
+  );
 
-function SavedMovies() {
-  useDocumentTitle('Сохранённые фильмы - Movie explor');
+  const {
+    filteredCards,
+    handleSearch,
+    handleFilterChange,
+    searchInputRef,
+    isShortFilm,
+    searchFormIsValid,
+    isSearch,
+  } = useSearchEngine(userMovies, movieMapper);
+
+  useDocumentTitle(SAVED_MOVIES_PAGE_TITLE);
+
   return (
     <main className="content saved-movies">
-      <SearchForm />
-      <MoviesCardList cards={saved_cards} />
+      <SearchForm
+        onSearch={handleSearch}
+        searchInputRef={searchInputRef}
+        onFilterChange={handleFilterChange}
+        isChecked={isShortFilm}
+        searchFormIsValid={searchFormIsValid}
+        isLoading={isLoading}
+      />
+      <MoviesCardList
+        cards={filteredCards}
+        cardsToShow={cardsToShow}
+        onMore={onMore}
+        userMovies={userMovies}
+        isSavedMovies={true}
+        isError={isError}
+        isSearch={isSearch}
+      />
     </main>
   );
 }
