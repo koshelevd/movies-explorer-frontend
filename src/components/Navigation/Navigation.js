@@ -3,33 +3,33 @@ import { Link, NavLink } from 'react-router-dom';
 
 import './Navigation.css';
 
-function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
+function Navigation({ onMenuOpen, onMenuClose, isMenuOpen, loggedIn }) {
   const wrapperRef = useRef(null);
 
   useEffect(() => {
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
-        menuHandler();
+        onMenuClose();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [wrapperRef, menuHandler]);
+  }, [wrapperRef, onMenuClose]);
 
   useEffect(() => {
     if (!isMenuOpen) return;
     const handleEscapeClose = (event) => {
       if (event.key === 'Escape') {
-        menuHandler();
+        onMenuClose();
       }
     };
     document.addEventListener('keydown', handleEscapeClose);
     return () => {
       document.removeEventListener('keydown', handleEscapeClose);
     };
-  }, [isMenuOpen, menuHandler]);
+  }, [isMenuOpen, onMenuClose]);
 
   return loggedIn ? (
     <>
@@ -37,7 +37,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
         className="navigation__burger smoothly"
         type="button"
         aria-label="Меню"
-        onClick={menuHandler}
+        onClick={onMenuOpen}
       ></button>
       <nav
         className={`navigation navigation_type_side ${
@@ -52,6 +52,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
               to="/"
               className="link smoothly"
               activeClassName="navigation__active-link"
+              onClick={onMenuClose}
             >
               Главная
             </NavLink>
@@ -61,6 +62,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
               to="/movies"
               className="link smoothly"
               activeClassName="navigation__active-link"
+              onClick={onMenuClose}
             >
               Фильмы
             </NavLink>
@@ -70,6 +72,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
               to="/saved-movies"
               className="link smoothly"
               activeClassName="navigation__active-link"
+              onClick={onMenuClose}
             >
               Сохранённые фильмы
             </NavLink>
@@ -79,6 +82,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
               to="/profile"
               className="link smoothly"
               activeClassName="navigation__active-link"
+              onClick={onMenuClose}
             >
               <span className="navigation__profile-icon smoothly">Аккаунт</span>
             </NavLink>
@@ -88,7 +92,7 @@ function Navigation({ menuHandler, isMenuOpen, loggedIn }) {
           className="navigation__close-button smoothly"
           type="button"
           aria-label="Закрыть"
-          onClick={menuHandler}
+          onClick={onMenuClose}
         ></button>
       </nav>
     </>
