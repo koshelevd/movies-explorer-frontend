@@ -60,7 +60,7 @@ function App() {
     setTimeout(() => _setStatus(''), ERROR_MESSAGE_TIMEOUT);
   };
 
-  let location = useLocation();
+  const location = useLocation();
 
   useEffect(() => {
     mainApi
