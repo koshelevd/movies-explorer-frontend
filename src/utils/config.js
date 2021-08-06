@@ -60,3 +60,13 @@ export const SEARCH_RESULT_ERROR =
   'Во время запроса произошла ошибка. Возможно, проблема с соединением или сервер недоступен. Подождите немного и попробуйте ещё раз';
 export const PROFILE_SAVE_SUCCESS_MESSAGE =
   'Данные пользователя успешно обновлены.';
+export const DECLENSION_CASES = [2, 0, 1, 1, 1, 2];
+export const HOURS_DECLENSIONS = ['час', 'часа', 'часов'];
+export const MINUTES_DECLENSIONS = ['минута', 'минуты', 'минут'];
+export const MINUTES_IN_HOUR = 60;
+export const ONE_HUNDRED = 100;
+export const TEN = 10;
+export const THIRD_DECLENSION = 2;
+export const FOUR = 4;
+export const LAST_CASE = 5;
+export const TWENTY = 20;
