@@ -20,7 +20,7 @@ function Layout({
         isMenuOpen ? 'page__container_type_black' : ''
       } smoothly`}
     >
-      <Route path={PAGES_WITH_HEADER}>
+      <Route exact path={PAGES_WITH_HEADER}>
         <Header
           onMenuOpen={onMenuOpen}
           onMenuClose={onMenuClose}
@@ -29,7 +29,7 @@ function Layout({
         />
       </Route>
       {children}
-      <Route path={PAGES_WITH_FOOTER} component={Footer} />
+      <Route exact path={PAGES_WITH_FOOTER} component={Footer} />
       <Alert status={errorStatus} />
     </div>
   );

@@ -5,7 +5,9 @@ import { useSearchEngine } from '../../hooks/useSearchEngine';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 
-import { SAVED_MOVIES_PAGE_TITLE } from '../../utils/config';
+import {
+  SAVED_MOVIES_PAGE_TITLE,
+} from '../../utils/config';
 
 import './SavedMovies.css';
 

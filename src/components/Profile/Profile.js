@@ -5,6 +5,7 @@ import useDocumentTitle from '../../hooks/useDocumentTitle';
 import './Profile.css';
 
 import { PROFILE_PAGE_TITLE } from '../../utils/config';
+import Preloader from '../Preloader/Preloader';
 
 function Profile({
   onEdit,
@@ -57,7 +58,7 @@ function Profile({
               required
               autoFocus
               pattern="^[а-яёА-ЯЁa-zA-Z0-9\s\-]+$"
-              value={values.name}
+              value={values.name || ''}
               type="text"
               onChange={handleChange}
               disabled={!isEdit}
@@ -72,12 +73,15 @@ function Profile({
               required
               autoFocus
               pattern="^[^@]+@[^@]+\.[^@]+$"
-              value={values.email}
+              value={values.email || ''}
               type="email"
               onChange={handleChange}
               disabled={!isEdit}
             />
           </label>
+        </div>
+        <div className={`overlay ${isLoading ? 'overlay_active' : ''}`}>
+          <Preloader isLoading={isLoading} />
         </div>
         <div className="profile__buttons">
           {isEdit ? (

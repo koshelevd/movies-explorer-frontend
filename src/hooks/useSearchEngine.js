@@ -1,7 +1,7 @@
 import { createRef, useState, useCallback, useEffect } from 'react';
 import { SHORT_FILM_DURATION } from '../utils/config';
 
-export function useSearchEngine(movies, moviesMapper, onSearch) {
+export function useSearchEngine(movies, moviesMapper, storageKey, onSearch) {
   const [filteredCards, setFilteredCards] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
@@ -25,13 +25,25 @@ export function useSearchEngine(movies, moviesMapper, onSearch) {
 
   const filterCards = useCallback(() => {
     const filteredData = movies.filter(moviesFilter);
-    setFilteredCards(filteredData.map(moviesMapper));
-  }, [moviesFilter, moviesMapper, movies]);
+    const cards = filteredData.map(moviesMapper);
+    if (storageKey) {
+      localStorage.setItem(storageKey, JSON.stringify(cards));
+    }
+
+    setFilteredCards(cards);
+  }, [moviesFilter, moviesMapper, movies, storageKey]);
 
   useEffect(() => {
-    setSearchFormIsValid(true);
-    filterCards();
-  }, [filterCards, movies, isShortFilm]);
+    const cards = JSON.parse(localStorage.getItem(storageKey));
+    if (cards && cards.length !== 0) {
+      setFilteredCards(cards);
+      setIsSearch(true);
+    } else {
+      setSearchFormIsValid(true);
+      filterCards();
+    }
+
+  }, [filterCards, storageKey]);
 
   function handleSearch() {
     if (searchInputRef.current.value === '') {
@@ -40,15 +52,16 @@ export function useSearchEngine(movies, moviesMapper, onSearch) {
     setSearchQuery(searchInputRef.current.value);
     if (onSearch) {
       onSearch();
-    } else {
-      filterCards();
     }
+    filterCards();
     setIsSearch(true);
   }
 
   function handleFilterChange() {
     setIsShortFilm(!isShortFilm);
     setIsSearch(true);
+    setSearchFormIsValid(true);
+    filterCards();
   }
 
   return {

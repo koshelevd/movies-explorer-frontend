@@ -2,6 +2,7 @@ import { Redirect } from 'react-router-dom';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import AuthForm from '../AuthForm/AuthForm';
+import Preloader from '../Preloader/Preloader';
 import './Register.css';
 import { REGISTER_PAGE_TITLE } from '../../utils/config';
 
@@ -14,7 +15,7 @@ function Register({ onSubmit, errorMessage, isLoading, loggedIn }) {
     onSubmit(values);
   }
 
-  useDocumentTitle({ REGISTER_PAGE_TITLE });
+  useDocumentTitle(REGISTER_PAGE_TITLE);
 
   return loggedIn ? (
     <Redirect to="./" />
@@ -92,6 +93,9 @@ function Register({ onSubmit, errorMessage, isLoading, loggedIn }) {
             {errors.password || ''}
           </span>
         </label>
+        <div className={`overlay ${isLoading ? 'overlay_active' : ''}`}>
+          <Preloader isLoading={isLoading} />
+        </div>
       </AuthForm>
     </main>
   );

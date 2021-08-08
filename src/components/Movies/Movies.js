@@ -9,6 +9,7 @@ import {
   MOVIES_PAGE_TITLE,
   MOVIES_API_URL,
   DEFAULT_EMPTY_VALUE,
+  KEY_FILTERED_MOVIES,
 } from '../../utils/config';
 
 import './Movies.css';
@@ -53,7 +54,7 @@ function Movies({
     isShortFilm,
     searchFormIsValid,
     isSearch,
-  } = useSearchEngine(beatfilmMovies, moviesMapper, onSearch);
+  } = useSearchEngine(beatfilmMovies, moviesMapper, KEY_FILTERED_MOVIES, onSearch);
 
   useDocumentTitle(MOVIES_PAGE_TITLE);
   return (
@@ -67,7 +68,7 @@ function Movies({
         isLoading={isLoading}
       />
       {isLoading ? (
-        <Preloader />
+        <Preloader isLoading={isLoading} />
       ) : (
         <MoviesCardList
           cards={filteredCards}

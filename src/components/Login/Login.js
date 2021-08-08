@@ -2,6 +2,7 @@ import { Redirect } from 'react-router-dom';
 import useDocumentTitle from '../../hooks/useDocumentTitle';
 import { useFormWithValidation } from '../../hooks/useFormWithValidation';
 import AuthForm from '../AuthForm/AuthForm';
+import Preloader from '../Preloader/Preloader';
 import { LOGIN_PAGE_TITLE } from '../../utils/config';
 
 function Login({ onSubmit, errorMessage, isLoading, loggedIn }) {
@@ -68,6 +69,9 @@ function Login({ onSubmit, errorMessage, isLoading, loggedIn }) {
             {errors.password || ''}
           </span>
         </label>
+        <div className={`overlay ${isLoading ? 'overlay_active' : ''}`}>
+          <Preloader isLoading={isLoading} />
+        </div>
       </AuthForm>
     </main>
   );

@@ -24,6 +24,10 @@ import {
   SIGN_IN_ERROR_DEFAULT_MESSAGE,
   ERROR_TEXT,
   PROFILE_SAVE_SUCCESS_MESSAGE,
+  KEY_LOGGED_IN,
+  KEY_BEATFILMS_MOVIES,
+  KEY_USER_MOVIES,
+  KEY_FILTERED_MOVIES,
 } from '../../utils/config';
 
 import {
@@ -39,7 +43,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [isMenuOpen, setMenuOpen] = useState(false);
   const [isProfileEdit, setIsProfileEdit] = useState(false);
-  const [loggedIn, setLoggedIn] = useStateWithLocalStorage('loggedIn');
+  const [loggedIn, setLoggedIn] = useStateWithLocalStorage(KEY_LOGGED_IN);
   const [authError, setAuthError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [userMovies, setUserMovies] = useState([]);
@@ -63,15 +67,6 @@ function App() {
   const location = useLocation();
 
   useEffect(() => {
-    mainApi
-      .getMovies()
-      .then((movies) => {
-        setUserMovies(movies);
-      })
-      .catch((err) => setStatus(loggedIn ? err.message : ''));
-  }, [currentUser, loggedIn]);
-
-  useEffect(() => {
     setAuthError('');
     setIsError(false);
   }, [location]);
@@ -81,30 +76,48 @@ function App() {
   }, [defaultCardsToShow]);
 
   useEffect(() => {
-    const moviesLocal = JSON.parse(localStorage.getItem('beatfilmMovies'));
+    const moviesLocal = JSON.parse(localStorage.getItem(KEY_BEATFILMS_MOVIES));
     if (moviesLocal) {
       setSavedLocalMovies(moviesLocal);
     }
   }, []);
 
   useEffect(() => {
-    mainApi
-      .getProfileInfo()
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        return Promise.reject(new Error(`${ERROR_TEXT}: ${response.status}`));
-      })
-      .then((result) => {
-        setLoggedIn(true);
-        setCurrentUser(result);
-      })
-      .catch((err) => {
-        console.log(err);
-        setLoggedIn(false);
-      });
-  }, [loggedIn, setLoggedIn]);
+    const userMoviesLocal = JSON.parse(localStorage.getItem(KEY_USER_MOVIES));
+    if (userMoviesLocal) {
+      setUserMovies(userMoviesLocal);
+    }
+    if (loggedIn && !userMoviesLocal) {
+      mainApi
+        .getMovies()
+        .then((movies) => {
+          localStorage.setItem(KEY_USER_MOVIES, JSON.stringify(movies));
+          setUserMovies(movies);
+        })
+        .catch((err) => setStatus(loggedIn ? err.message : ''));
+    }
+  }, [currentUser]);
+
+  useEffect(() => {
+    if (Object.entries(currentUser).length === 0 && loggedIn) {
+      mainApi
+        .getProfileInfo()
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          return Promise.reject(new Error(`${ERROR_TEXT}: ${response.status}`));
+        })
+        .then((result) => {
+          setLoggedIn(true);
+          setCurrentUser(result);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoggedIn(false);
+        });
+    }
+  }, []);
 
   function handleClickMore() {
     setCardsToShow(cardsToShow + moreCards);
@@ -121,7 +134,7 @@ function App() {
       moviesApi
         .getMovies()
         .then((movies) => {
-          localStorage.setItem('beatfilmMovies', JSON.stringify(movies));
+          localStorage.setItem(KEY_BEATFILMS_MOVIES, JSON.stringify(movies));
           setBeatfilmMovies(movies);
         })
         .catch((err) => {
@@ -137,8 +150,16 @@ function App() {
       .saveOrDeleteMovie(movie, isSaved)
       .then((newMovie) => {
         if (!isSaved) {
+          localStorage.setItem(
+            KEY_USER_MOVIES,
+            JSON.stringify([...userMovies, newMovie])
+          );
           setUserMovies((state) => [...state, newMovie]);
         } else {
+          localStorage.setItem(
+            KEY_USER_MOVIES,
+            JSON.stringify(userMovies.filter((m) => m.movieId !== movie.movieId))
+          );
           setUserMovies((state) =>
             state.filter((m) => m.movieId !== movie.movieId)
           );
@@ -208,6 +229,9 @@ function App() {
       .then((result) => {
         if (result) {
           setLoggedIn(false);
+          localStorage.removeItem(KEY_BEATFILMS_MOVIES);
+          localStorage.removeItem(KEY_USER_MOVIES);
+          localStorage.removeItem(KEY_FILTERED_MOVIES);
         }
       })
       .catch((err) => {

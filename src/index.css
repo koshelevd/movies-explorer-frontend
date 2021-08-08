@@ -46,6 +46,20 @@
   width: 100%;
 }
 
+.overlay {
+ display: none; 
+ position: absolute;
+ left: 0;
+ top: 0;
+ background: rgba(32, 32, 32, 0.5);
+ width: 100%;
+ height: 100vh;
+}
+
+.overlay_active {
+  display: flex;
+}
+
 @media screen and (min-width: 768px) {
   .section {
     padding: 92px 30px;
