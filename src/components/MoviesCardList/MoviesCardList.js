@@ -17,7 +17,7 @@ function MoviesCardList({
   isSearch,
 }) {
   const cardsNumber = cards.length;
-
+  console.log(cards);
   return (
     <section className="card-list">
       {isError ? (

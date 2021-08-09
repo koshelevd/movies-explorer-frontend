@@ -37,7 +37,7 @@ function SavedMovies({
     isShortFilm,
     searchFormIsValid,
     isSearch,
-  } = useSearchEngine(userMovies, movieMapper);
+  } = useSearchEngine(userMovies, movieMapper, onSave);
 
   useDocumentTitle(SAVED_MOVIES_PAGE_TITLE);
 

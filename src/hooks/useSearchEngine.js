@@ -1,7 +1,13 @@
 import { createRef, useState, useCallback, useEffect } from 'react';
 import { SHORT_FILM_DURATION } from '../utils/config';
 
-export function useSearchEngine(movies, moviesMapper, storageKey, onSearch) {
+export function useSearchEngine(
+  movies,
+  moviesMapper,
+  onSave,
+  storageKey,
+  onSearch
+) {
   const [filteredCards, setFilteredCards] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [isShortFilm, setIsShortFilm] = useState(false);
@@ -36,13 +42,16 @@ export function useSearchEngine(movies, moviesMapper, storageKey, onSearch) {
   useEffect(() => {
     const cards = JSON.parse(localStorage.getItem(storageKey));
     if (cards && cards.length !== 0) {
+      cards.forEach((element) => {
+        element.onClick = onSave;
+      });
       setFilteredCards(cards);
+
       setIsSearch(true);
     } else {
       setSearchFormIsValid(true);
       filterCards();
     }
-
   }, [filterCards, storageKey]);
 
   function handleSearch() {

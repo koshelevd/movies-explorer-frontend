@@ -54,7 +54,7 @@ function Movies({
     isShortFilm,
     searchFormIsValid,
     isSearch,
-  } = useSearchEngine(beatfilmMovies, moviesMapper, KEY_FILTERED_MOVIES, onSearch);
+  } = useSearchEngine(beatfilmMovies, moviesMapper, onSave, KEY_FILTERED_MOVIES, onSearch);
 
   useDocumentTitle(MOVIES_PAGE_TITLE);
   return (
