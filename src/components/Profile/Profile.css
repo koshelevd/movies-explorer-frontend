@@ -55,10 +55,30 @@
   background-color: transparent;
   box-shadow: none;
   padding-bottom: 2px;
+  color: #fff;
+  border-radius: 2px;
+}
+.profile__input:focus {
+  outline: none;
+  color: #3ddc84;
 }
 
 .profile__input:disabled {
   color: #fff;
+}
+
+.form__validation-error {
+  font-size: 11px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 13px;
+  color: #ee3465;
+  visibility: hidden;
+  margin-bottom: 20px;
+}
+
+.form__validation-error_active {
+  visibility: visible;
 }
 
 .profile__buttons {
@@ -75,10 +95,64 @@
   line-height: 15px;
 }
 
-.profile__link_type_exit {
+.profile__button {
+  font-size: 12px;
+  font-style: normal;
   font-weight: 500;
+  line-height: 15px;
+
+  background: none;
+  border: none;
+}
+
+.profile__button_type_submit {
+  width: 100%;
+  padding: 15px 0;
+  border: none;
+  background: #4285f4;
+  color: #fff;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px;
+  border-radius: 3px;
+}
+
+.profile__button_type_submit:disabled {
+  background: #f8f8f8;
+  color: #c2c2c2;
+}
+
+.profile__button_type_submit-button:disabled:hover {
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.profile__button_type_submit-button:focus {
+  outline: none;
+  box-shadow: 0px 0px 4px 1px rgba(43, 224, 128, 0.8);
+}
+
+.profile__button:focus {
+  outline: none;
+}
+
+.profile__button_type_edit {
+  color: #fff;
+}
+.profile__button_type_exit {
   color: #ee3465;
   margin-top: 16px;
+}
+
+.profile__button:hover {
+  opacity: .8;
+  cursor: pointer;
+}
+
+.profile__button_type_exit:disabled {
+  color: #2c2c2c;
+  cursor: not-allowed;
 }
 
 @media screen and (min-width: 768px) {
@@ -93,6 +167,11 @@
   }
 
   .profile__link {
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  .profile__button {
     font-size: 13px;
     line-height: 16px;
   }

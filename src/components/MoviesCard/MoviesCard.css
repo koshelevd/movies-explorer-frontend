@@ -16,7 +16,7 @@
 }
 
 .card__title {
-  max-width: 200px;
+  max-width: 180px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
@@ -35,10 +35,17 @@
   margin: 0;
 }
 
+.card__trailer-link {
+  display: flex;
+  height: 168px;
+  width: 100%;
+  margin-bottom: 14px;
+}
+
 .card__poster {
   object-fit: cover;
   height: 168px;
-  margin-bottom: 14px;
+  width: 100%;
 }
 
 .card__button {
@@ -86,7 +93,7 @@
   }
 
   .card__title {
-    max-width: 224px;
+    max-width: 190px;
     font-size: 15px;
   }
 
@@ -94,9 +101,13 @@
     font-size: 13px;
   }
 
-  .card__poster {
+  .card__trailer-link {
     height: 190px;
     margin-bottom: 18px;
+  }
+
+  .card__poster {
+    height: 190px;
   }
 }
 
@@ -105,8 +116,11 @@
     width: 360px;
   }
 
+  .card__trailer-link {
+    height: 200px;
+  }
+
   .card__poster {
     height: 200px;
-    margin-bottom: 18px;
   }
 }

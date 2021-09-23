@@ -5,7 +5,7 @@ import Navigation from '../Navigation/Navigation';
 import logo from '../../images/header-logo.svg';
 import './Header.css';
 
-function Header({ menuHandler, isMenuOpen, loggedIn }) {
+function Header({ onMenuOpen, onMenuClose, isMenuOpen, loggedIn }) {
   return (
     <header className="header section page__header">
       <Link to="/" className="header__link">
@@ -16,7 +16,8 @@ function Header({ menuHandler, isMenuOpen, loggedIn }) {
         />
       </Link>
       <Navigation
-        menuHandler={menuHandler}
+        onMenuOpen={onMenuOpen}
+        onMenuClose={onMenuClose}
         isMenuOpen={isMenuOpen}
         loggedIn={loggedIn}
       />

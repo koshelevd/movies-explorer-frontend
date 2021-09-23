@@ -4,29 +4,51 @@
   box-sizing: border-box;
   padding: 20px;
   top: 5px;
-  background-color: #f44336;
-  color: white;
-  opacity: 1;
-  transition: opacity 0.6s;
-  margin-bottom: 15px;
-  display: none;
+  
+  visibility: hidden;
+  opacity: 0; 
+  transition: all 1s ease;
 }
 
 .alert_opened {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+
+}
+
+.alert__message {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: rgba(100, 92, 92, 0.72);
+  color: white;
+  margin: 0;
+  min-height: 80px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 1fr 5fr 1fr;
+  grid-column-gap: 5px;
+  justify-items: center;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.alert__status {
+  grid-column-start: 2;
+  text-align: center;
 }
 
 .alert__close-button {
   margin-left: 15px;
   color: white;
   font-weight: bold;
-  float: right;
   font-size: 22px;
   line-height: 20px;
   cursor: pointer;
   transition: 0.3s;
+  margin-left: auto;
 }
 
 .alert__close-button:hover {
   color: black;
 }
+

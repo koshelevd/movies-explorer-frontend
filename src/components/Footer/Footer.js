@@ -32,7 +32,7 @@ function Footer() {
             </li>
             <li className="footer__links-item">
               <a
-                href="facebook.com/dmitri.koshelev.9"
+                href="https://facebook.com/dmitri.koshelev.9"
                 className="footer__link link smoothly"
                 target="_blank"
                 rel="noopener noreferrer"
